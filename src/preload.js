@@ -1,2 +1,13 @@
-// See the Electron documentation for details on how to use preload scripts:
-// https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
+const { ipcRenderer } = require("electron");
+
+// ipcRenderer.on("sending", () => {
+//   console.log("working");
+// });
+
+window.addEventListener("DOMContentLoaded", () => {
+  const button = document.querySelector("button");
+  button.addEventListener("click", () => {
+    const text = document.querySelector("input").value;
+    ipcRenderer.invoke("data", text);
+  });
+});
